@@ -1,11 +1,345 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JTI Innovation Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+        }
+
+        /* --- Header Styling --- */
+        .navbar {
+            background-color: #e0e0e0;
+            padding: 15px 0;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .nav-link {
+            color: #333 !important;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 15px;
+            text-transform: capitalize;
+        }
+
+        /* --- Content Styling --- */
+        .portfolio-section {
+            padding: 50px 0;
+            text-align: center;
+        }
+        .portfolio-title {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #000;
+        }
+        .portfolio-desc {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* --- Filter Buttons Styling --- */
+        .filter-buttons {
+            margin-bottom: 50px;
+            display: inline-flex;
+            background-color: #dc3545;
+            padding: 5px;
+            border-radius: 50px;
+        }
+
+        .btn-filter {
+            border: none;
+            background: transparent;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: underline;
+            text-decoration-color: transparent;
+        }
+        
+        .btn-filter:hover {
+            color: #fff;
+        }
+
+        .btn-filter.active {
+            background-color: white;
+            color: #dc3545;
+            text-decoration: underline;
+            text-decoration-color: #dc3545;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* --- Gallery Grid Styling --- */
+        .portfolio-item {
+            margin-bottom: 30px;
+            display: none; 
+        }
+        
+        .portfolio-item.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-img:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: #444444;
+            color: white;
+            padding: 50px 0 20px 0;
+            font-size: 0.9rem;
+        }
+        
+        .footer-logo {
+            background: white;
+            padding: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 30px;
+        }
+
+        .footer-col h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: #dc3545;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .filter-buttons {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+            .btn-filter {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
 </head>
 <body>
-    Welcome
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://via.placeholder.com/150x50/dc3545/ffffff?text=jtinova" alt="JTI Innovation Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Portofolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="portfolio-section">
+        <div class="container">
+            <h1 class="portfolio-title">PORTFOLIO</h1>
+            
+            <p class="portfolio-desc">
+                Teaching Factory JTI Innovation telah bekerja sama dengan berbagai instansi 
+                dan perusahaan untuk menyediakan solusi teknologi dan inovasi 
+                yang terbaik. Lihat portofolio kami untuk mengetahui lebih lanjut tentang 
+                proyek-proyek yang kami kerjakan.
+            </p>
+
+            <div class="filter-buttons">
+                <button class="btn-filter active" onclick="filterPortfolio('all', this)">All</button>
+                <button class="btn-filter" onclick="filterPortfolio('website', this)">Website</button>
+                <button class="btn-filter" onclick="filterPortfolio('mobile-app', this)">Mobile App</button>
+                <button class="btn-filter" onclick="filterPortfolio('web-mobile', this)">Web dan Mobile App</button>
+            </div>
+
+            <div class="row" id="portfolio-grid">
+                
+                <div class="col-md-6 portfolio-item website">
+                    <img src="gambar/waterfruzz.jpg" alt="Project 1" class="portfolio-img">
+                </div>
+
+                <div class="col-md-6 portfolio-item web-mobile">
+                    <img src="https://via.placeholder.com/600x300/d0d0d0/333333?text=2.+Web+%26+Mobile+App" alt="Project 2" class="portfolio-img">
+                </div>
+
+                <div class="col-md-6 portfolio-item website">
+                    <img src="https://via.placeholder.com/600x300/c0c0c0/333333?text=3.+Website+Project" alt="Project 3" class="portfolio-img">
+                </div>
+
+                <div class="col-md-6 portfolio-item web-mobile">
+                    <img src="https://via.placeholder.com/600x300/b0b0b0/333333?text=4.+Web+%26+Mobile+App" alt="Project 4" class="portfolio-img">
+                </div>
+
+                <div class="col-md-6 portfolio-item website">
+                    <img src="https://via.placeholder.com/600x300/a0a0a0/333333?text=5.+Website+Project" alt="Project 5" class="portfolio-img">
+                </div>
+
+                <div class="col-md-6 portfolio-item web-mobile">
+                    <img src="https://via.placeholder.com/600x300/909090/333333?text=6.+Web+%26+Mobile+App" alt="Project 6" class="portfolio-img">
+                </div>
+                
+                <div class="col-md-6 portfolio-item website">
+                    <img src="https://via.placeholder.com/600x300/808080/333333?text=7.+Website+Project" alt="Project 7" class="portfolio-img">
+                </div>
+
+                <div class="col-md-6 portfolio-item web-mobile">
+                    <img src="https://via.placeholder.com/600x300/707070/333333?text=8.+Web+%26+Mobile+App" alt="Project 8" class="portfolio-img">
+                </div>
+
+            </div>
+            
+            <div id="empty-message" style="display:none; margin-top: 20px;">
+                <p class="text-muted">Tidak ada item yang ditampilkan dalam kategori ini.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 contact-info">
+                    <div class="footer-logo">
+                        <img src="https://via.placeholder.com/100x30/dc3545/ffffff?text=jtinova" alt="Logo Footer">
+                    </div>
+                    <p>
+                        Jl. Mastrip No. 64, Sumbersari,<br>
+                        Kec. Sumbersari, Kabupaten<br>
+                        Jember, Jawa Timur 68121
+                    </p>
+                    <p>Phone: +62 851-0300-2839<br>
+                    Email: jtinova@polije.ac.id</p>
+                </div>
+
+                <div class="col-md-2 mb-4 footer-col">
+                    <h5>Menu</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Portofolio</a></li>
+                        <li><a href="#">Galeri</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 mb-4 footer-col">
+                    <h5>Layanan</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Pelatihan</a></li>
+                        <li><a href="#">Pendampingan</a></li>
+                        <li><a href="#">Magang Mahasiswa</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 mb-4 footer-col">
+                    <h5>Sosial Media</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Youtube</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function filterPortfolio(category, btnElement) {
+            var buttons = document.getElementsByClassName('btn-filter');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+            btnElement.classList.add('active');
+
+            var items = document.getElementsByClassName('portfolio-item');
+            var emptyMsg = document.getElementById('empty-message');
+            var visibleCount = 0;
+
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                item.classList.remove('show');
+                
+                if (category === 'all') {
+                    item.classList.add('show');
+                    visibleCount++;
+                } else if (item.classList.contains(category)) {
+                    item.classList.add('show');
+                    visibleCount++;
+                }
+            }
+
+            if (visibleCount === 0) {
+                emptyMsg.style.display = 'block';
+            } else {
+                emptyMsg.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var allBtn = document.querySelector('.btn-filter.active');
+            if(allBtn) filterPortfolio('all', allBtn);
+        });
+    </script>
 </body>
 </html>
